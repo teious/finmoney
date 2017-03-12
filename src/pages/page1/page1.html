@@ -9,7 +9,7 @@
 </ion-header>
 
 <ion-content>
-    <div class="ion-header">Moves</div>
+    <ion-title>FinMoney</ion-title>
     <ion-list>
 
         <ion-item-sliding *ngFor="let item of items">
@@ -18,8 +18,8 @@
                 {{item.title}}
             </ion-item>
             <ion-item-options>
-                <button primary (click)="removeItem()"> Liquidar</button>
-                <button danger (click)="removeItem(item)"> Delete</button>
+                <button primary (click)="checkItem(item)"><ion-icon [name]="item.checked"></ion-icon></button>
+                <button danger (click)="removeItem(item)"><ion-icon name="trash"></ion-icon></button>
             </ion-item-options>
         </ion-item-sliding>
 
