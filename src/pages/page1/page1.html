@@ -1,0 +1,27 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+        <ion-title>FinMoney
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <div class="ion-header">Moves</div>
+    <ion-list>
+
+        <ion-item-sliding *ngFor="let item of items">
+
+            <ion-item>
+                {{item.title}}
+            </ion-item>
+            <ion-item-options>
+                <button primary (click)="removeItem()"> Liquidar</button>
+                <button danger (click)="removeItem(item)"> Delete</button>
+            </ion-item-options>
+        </ion-item-sliding>
+
+    </ion-list>
+</ion-content>
