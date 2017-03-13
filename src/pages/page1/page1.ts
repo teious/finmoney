@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import * as moment from 'moment';
-import * as brazilian from 'moment/src/locale/pt-br';
 @Component({
   selector: 'page-page1',
   templateUrl: 'page1.html'
@@ -13,7 +12,7 @@ t;
   constructor(public navCtrl: NavController) { 
   
   this.t = moment();
-  this.t.locale('pt-br') 
+  this.t.locale('pt-br');
   this.month = this.t.format('MMMM') ;
     this.items = [
         {title: 'item1',checked:'checkmark-circle-outline'},

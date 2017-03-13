@@ -20,9 +20,11 @@
             <ion-item>
                 {{item.title}}
             </ion-item>
-            <ion-item-options>
-                <button primary (click)="checkItem(item)"><ion-icon [name]="item.checked"></ion-icon></button>
-                <button danger (click)="removeItem(item)"><ion-icon name="trash"></ion-icon></button>
+            <ion-item-options side="right">
+                <button ion-button color="danger" (click)="removeItem(item)"><ion-icon name="trash"></ion-icon>Excluir</button>
+            </ion-item-options>
+            <ion-item-options side="left">
+                <button ion-button (click)="checkItem(item)"><ion-icon [name]="item.checked"></ion-icon>Efetivar</button>
             </ion-item-options>
         </ion-item-sliding>
 
