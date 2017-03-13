@@ -9,7 +9,10 @@
 </ion-header>
 
 <ion-content>
-    <ion-title>FinMoney</ion-title>
+    <ion-toolbar>
+        <button (click)="prevMonth()"><ion-icon name="arrow-back"></ion-icon></button>{{month}}
+        <button (click)="nextMonth()"><ion-icon name="arrow-forward"></ion-icon></button>
+    </ion-toolbar>
     <ion-list>
 
         <ion-item-sliding *ngFor="let item of items">

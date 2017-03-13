@@ -1,16 +1,20 @@
 import { Component } from '@angular/core';
-
 import { NavController } from 'ionic-angular';
-
+import * as moment from 'moment';
+import * as brazilian from 'moment/src/locale/pt-br';
 @Component({
   selector: 'page-page1',
   templateUrl: 'page1.html'
 })
 export class Page1 {
   items:[{title:string,checked:string}];
-  constructor(public navCtrl: NavController) {
-    
-    
+  month:string;
+t;
+  constructor(public navCtrl: NavController) { 
+  
+  this.t = moment();
+  this.t.locale('pt-br') 
+  this.month = this.t.format('MMMM') ;
     this.items = [
         {title: 'item1',checked:'checkmark-circle-outline'},
         {title: 'item2',checked:'checkmark-circle-outline'},
@@ -45,5 +49,17 @@ export class Page1 {
  
     }
   }
+  prevMonth(){
+      this.t.add(-1,'months');
+      
+      this.month = this.t.format('MMMM') ;
+      console.log(this.month);
+  }
+ nextMonth(){
+   this.t.add(1,'months');
+   this.month = this.t.format('MMMM');
+   console.log(this.month);
+
+}
 
 }
