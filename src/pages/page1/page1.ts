@@ -6,7 +6,7 @@ import * as moment from 'moment';
   templateUrl: 'page1.html'
 })
 export class Page1 {
-  items:[{title:string,checked:string}];
+  items:[{title:string,value:number,checked:string,date:string}];
   month:string;
 t;
   constructor(public navCtrl: NavController) { 
@@ -15,12 +15,12 @@ t;
   this.t.locale('pt-br');
   this.month = this.t.format('MMMM') ;
     this.items = [
-        {title: 'item1',checked:'checkmark-circle-outline'},
-        {title: 'item2',checked:'checkmark-circle-outline'},
-        {title: 'item3',checked:'checkmark-circle-outline'},
-        {title: 'item4',checked:'checkmark-circle-outline'},
-        {title: 'item5',checked:'checkmark-circle-outline'},
-        {title: 'item6',checked:'checkmark-circle-outline'}
+        {title: 'comida',value: 2000, checked:'checkmark-circle-outline', date: '13/03/2017'},
+        {title: 'jogos online',value: 2000, checked:'checkmark-circle-outline', date: '13/03/2017'},
+        {title: 'motel',value: 2000, checked:'checkmark-circle-outline', date: '13/03/2017'},
+        {title: 'baladas',value: 2000, checked:'checkmark-circle-outline', date: '13/03/2017'},
+        {title: 'combustivel',value: 2000, checked:'checkmark-circle-outline', date: '13/03/2017'},
+        {title: 'pasta de dente',value: 2000, checked:'checkmark-circle-outline', date: '13/03/2017'}
     ];
   }
     removeItem(item){
