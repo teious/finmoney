@@ -67,5 +67,8 @@ saldo:number;
    console.log(this.month);
 
 }
+addItem(){
+  
+}
 
 }
