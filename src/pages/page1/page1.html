@@ -1,5 +1,5 @@
 <ion-header>
-    <ion-navbar>
+    <ion-navbar color="primary">
         <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -10,24 +10,31 @@
 
 <ion-content>
     <ion-toolbar>
-        <button (click)="prevMonth()"><ion-icon name="arrow-back"></ion-icon></button> {{month}}
-        <button class="NextMonth" (click)="nextMonth()"><ion-icon name="arrow-forward"></ion-icon></button>
+        <button class="prev-month" (click)="prevMonth()"><ion-icon color="primary" name="arrow-back"></ion-icon></button> {{month}}
+        <button class="next-month" (click)="nextMonth()"><ion-icon color="primary" name="arrow-forward"></ion-icon></button>
     </ion-toolbar>
+
+    <ion-card>
+        <ion-card-content class="saldo">
+            {{saldo | currency:'BRL':true }}
+        </ion-card-content>
+    </ion-card>
     <ion-list>
 
         <ion-item-sliding *ngFor="let item of items">
 
             <ion-item>
-                <p>{{item.title}}</p>
-                <p>R$ {{item.value}}</p>
+                <p class="p-bold">{{item.title}}</p>
+                <p>{{item.value | currency:'BRL':true}}</p>
             </ion-item>
             <ion-item-options side="right">
                 <button ion-button color="danger" (click)="removeItem(item)"><ion-icon name="trash"></ion-icon>Excluir</button>
             </ion-item-options>
             <ion-item-options side="left">
-                <button ion-button (click)="checkItem(item)"><ion-icon [name]="item.checked"></ion-icon>Efetivar</button>
+                <button ion-button (click)="checkItem(item)"><ion-icon name="ios-checkbox" [isActive]="item.checked" ></ion-icon>Liquidado</button>
             </ion-item-options>
         </ion-item-sliding>
 
     </ion-list>
+
 </ion-content>

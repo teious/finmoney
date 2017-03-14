@@ -1,14 +1,28 @@
-page-page1 {}
+ion-toolbar {
+    text-align: center;
+}
 
 ion-icon {
-    font-size: 3em;
+    font-size: 2em;
 }
 
 .toolbar-content-md {
-    font-size: 3em;
-    align-content: center;
+    font-size: 2em;
 }
 
-.NextMonth {
+.prev-month {
+    float: left;
+}
+
+.next-month {
     float: right;
+}
+
+.p-bold {
+    font-weight: bold;
+}
+
+.saldo {
+    text-align: center;
+    font-size: 2em;
 }
