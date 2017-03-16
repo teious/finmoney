@@ -27,6 +27,7 @@ ion-icon {
     font-size: 2em;
 }
 .add-button {
+    z-index: 20;
     position: fixed;
     float:right;
     display:block;
