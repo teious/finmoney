@@ -1,9 +1,10 @@
 # finmoney
 
 VOCÊ VAI PRECISAR DE:
-Git
-Node.js
-Visual Studio Code
+
+-Git
+-Node.js
+-Visual Studio Code
 
 se quiser fazer um .apk:
 
