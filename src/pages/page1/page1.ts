@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { NavController } from 'ionic-angular';
 import * as moment from 'moment';
 @Component({
@@ -17,7 +17,7 @@ saldo:number;
   this.month = this.t.format('MMMM, YY') ;
   
     this.items = [
-        {title: 'salario',value: 8000.2, checked:false, date: '13/03/2017'},
+        {title: 'salario',value: 8000.2, checked:true, date: '13/03/2017'},
         {title: 'jogos online',value: -2000, checked:false, date: '13/03/2017'},
         {title: 'motel',value: -2000, checked:false, date: '13/03/2017'},
         {title: 'baladas',value: -2000, checked:false, date: '13/03/2017'},

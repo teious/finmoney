@@ -24,15 +24,13 @@
         <ion-item-sliding *ngFor="let item of items">
 
             <ion-item>
+                 <button class="check-button" (click)="checkItem(item)"><ion-icon name="ios-checkbox" [isActive]="item.checked" ></ion-icon></button>
                 <p class="p-bold">{{item.title}}</p>
                 <p>{{item.value | currency:'BRL':true}}</p>
             </ion-item>
             <ion-item-options side="right">
                 <button ion-button color="danger" (click)="removeItem(item)"><ion-icon name="trash"></ion-icon>Excluir</button>
-            </ion-item-options>
-            <ion-item-options side="left">
-                <button ion-button (click)="checkItem(item)"><ion-icon name="ios-checkbox" [isActive]="item.checked" ></ion-icon>Liquidado</button>
-            </ion-item-options>
+            </ion-item-options> 
         </ion-item-sliding>
   
     </ion-list>
