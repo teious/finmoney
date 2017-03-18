@@ -1,2 +1,3 @@
 couchdb
-web: ionic serve
+web: npm install -g ionic cordova
+ionic serve
