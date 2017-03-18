@@ -1,1 +1,2 @@
+couchdb
 web: ionic serve
