@@ -34,11 +34,13 @@
         </ion-item-sliding>
   
     </ion-list>
-
-       <button class="add-button" ion-button round (click)="addItem()">
+    <ion-fab bottom center>
+       <button ion-fab  color="dark"(click)="addItem($event)">
            <ion-icon name="add"></ion-icon>
        </button>
-        
+    </ion-fab>        
+
+
 
 
 </ion-content>

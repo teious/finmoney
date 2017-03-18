@@ -1,33 +1,53 @@
-import { Component} from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { Component, OnInit} from '@angular/core';
+import { NavController, PopoverController} from 'ionic-angular';
 import * as moment from 'moment';
+import{AddForm} from './add-form';
+import {Transactions} from '../../providers/transactions'
 @Component({
   selector: 'page-page1',
   templateUrl: 'page1.html'
 })
-export class Page1 {
-  items:[{title:string,value:number,checked:boolean,date:string}];
+export class Page1 implements OnInit {
+  items:[{title:string,value:number,checked:boolean,date:Date}];
   month:string;
 t;
 saldo:number;
-  constructor(public navCtrl: NavController) { 
+a:any;
+  constructor(public navCtrl: NavController, public popoverCtrl:PopoverController, public transactionService:Transactions) { 
   this.saldo = 0;
   this.t = moment();
   this.t.locale('pt-br');
   this.month = this.t.format('MMMM, YY') ;
+
+  }
+  ngOnInit(){
+   this.transactionService.getTransactions().then((value)=> {
+    console.log(value);
+     this.a = value;
+   });
   
-    this.items = [
-        {title: 'salario',value: 8000.2, checked:true, date: '13/03/2017'},
-        {title: 'jogos online',value: -2000, checked:false, date: '13/03/2017'},
-        {title: 'motel',value: -2000, checked:false, date: '13/03/2017'},
-        {title: 'baladas',value: -2000, checked:false, date: '13/03/2017'},
-        {title: 'combustivel',value: -2000, checked:false, date: '13/03/2017'},
-        {title: 'pasta de dente',value: -2000, checked:false, date: '13/03/2017'}
+    console.log(this.t.format());
+
+this.items = [
+        {title: 'salario',value: 8000.2, checked:true, date:this.t.toDate()},
+        {title: 'jogos online',value: -2000, checked:false, date: this.t.toDate()},
+        {title: 'motel',value: -2000, checked:false, date: this.t.toDate()},
+        {title: 'baladas',value: -2000, checked:false, date: this.t.toDate()},
+        {title: 'combustivel',value: -2000, checked:false, date: this.t.toDate()},
+        {title: 'pasta de dente',value: -2000, checked:false, date: this.t.toDate()}
     ];
+    for(let i = 0; i < this.items.length; i++) {
+ 
+      if(this.items[i].checked){
+
+        this.saldo += this.items[i].value;
+      }
+ 
+    }
+  
   }
     removeItem(item){
-     let i:number;
-    for(i = 0; i < this.items.length; i++) {
+    for(let i = 0; i < this.items.length; i++) {
  
       if(this.items[i] == item){
         this.items.splice(i, 1);
@@ -67,8 +87,10 @@ saldo:number;
    console.log(this.month);
 
 }
-addItem(){
-  
+addItem(event){
+  let popover = this.popoverCtrl.create(AddForm);
+  popover.present({
+    ev: event
+  });
 }
-
 }
