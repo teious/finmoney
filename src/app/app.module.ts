@@ -4,7 +4,7 @@ import { MyApp } from './app.component';
 import { Page1 } from '../pages/page1/page1';
 import { Page2 } from '../pages/page2/page2';
 import { AddForm} from '../pages/page1/add-form';
-import {Transactions} from '../providers/transactions';
+import {TransactionService} from '../providers/transaction';
 
 @NgModule({
   declarations: [
@@ -23,6 +23,6 @@ import {Transactions} from '../providers/transactions';
     Page2,
     AddForm
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Transactions]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, TransactionService]
 })
 export class AppModule {}

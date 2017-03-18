@@ -10,7 +10,7 @@ import PouchDB from 'pouchdb';
   for more info on providers and Angular 2 DI.
 */
 @Injectable()
-export class Transactions {
+export class TransactionService {
 
   data: any;
   db:any;
@@ -26,7 +26,7 @@ export class Transactions {
         continuous: true
       };
       this.db.sync(this.remote, options);
-  }
+}
 getTransactions(){
  if (this.data) {
     return Promise.resolve(this.data);
@@ -41,9 +41,9 @@ getTransactions(){
  
     }).then((result) => {
  
-      this.data = [];
+        this.data = [];
  
-      let docs = result.rows.map((row) => {
+        let docs = result.rows.map((row) => {
         this.data.push(row.doc);
       });
  
@@ -63,17 +63,51 @@ getTransactions(){
  
 }
 createTransaction(transaction){
-
+  this.db.post(transaction);
 }
-updateTransaction(transactions){
+updateTransaction(transaction){
+ this.db.put(transaction).catch((err)  =>{
+    console.log(err);
+ });
+}
+ 
+deleteTransaction(transaction){
+  this.db.remove(transaction).catch((err)=>{
+  console.log(err);
+ });
+}
+ 
+handleChange(change){
+  let changedDoc = null;
+  let changedIndex = null;
+ 
+  this.data.forEach((doc, index) => {
+ 
+    if(doc._id === change.id){
+      changedDoc = doc;
+      changedIndex = index;
+    }
+ 
+  });
+ 
+  //A document was deleted
+  if(change.deleted){
+    this.data.splice(changedIndex, 1);
+  } 
+  else {
+ 
+    //A document was updated
+    if(changedDoc){
+      this.data[changedIndex] = change.doc;
+    } 
+ 
+    //A document was added
+    else {
+      this.data.push(change.doc); 
+    }
  
   }
  
-  deleteTransaction(transactions){
- 
-  }
- 
-  handleChange(change){
- 
-  }
+}
+
 }
