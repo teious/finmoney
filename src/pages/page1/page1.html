@@ -9,7 +9,7 @@
 </ion-header>
 
 <ion-content>
-    <ion-toolbar>
+    <ion-toolbar text-lowercase>
         <button class="prev-month" (click)="prevMonth()"><ion-icon color="primary" name="arrow-back"></ion-icon></button> {{month}}
         <button class="next-month" (click)="nextMonth()"><ion-icon color="primary" name="arrow-forward"></ion-icon></button>
     </ion-toolbar>
@@ -20,25 +20,23 @@
         </ion-card-content>
     </ion-card>
     <ion-list>
-
         <ion-item-sliding *ngFor="let item of items">
-
             <ion-item>
-                 <button class="check-button" (click)="checkItem(item)"><ion-icon name="ios-checkbox" [isActive]="item.checked" ></ion-icon></button>
-                <p class="p-bold">{{item.title}}</p>
+                <button class="check-button" (click)="checkItem(item)"><ion-icon name="ios-checkbox" [isActive]="item.checked" ></ion-icon></button>
+                <p class="p-bold">{{item.name}}</p>
                 <p>{{item.value | currency:'BRL':true}}</p>
             </ion-item>
             <ion-item-options side="right">
                 <button ion-button color="danger" (click)="removeItem(item)"><ion-icon name="trash"></ion-icon>Excluir</button>
-            </ion-item-options> 
+            </ion-item-options>
         </ion-item-sliding>
-  
+
     </ion-list>
     <ion-fab bottom center>
-       <button ion-fab  color="dark"(click)="addItem($event)">
+        <button ion-fab color="dark" (click)="addItem($event)">
            <ion-icon name="add"></ion-icon>
        </button>
-    </ion-fab>        
+    </ion-fab>
 
 
 

@@ -1,21 +1,27 @@
 import {Component} from'@angular/core';
 import {ViewController} from 'ionic-angular';
-import {Transaction} from '../../models/transaction';
+import {Transaction, TransactionObj} from '../../models/transaction';
 import {TransactionService} from '../../providers/transaction';
 import * as moment from 'moment';
+
 @Component({
     templateUrl:'add-form.html'
 })
 
 export class AddForm{
-transaction:Transaction
-    constructor(public viewCtrl: ViewController, public service:TransactionService){}
+transaction:Transaction;
+obj:TransactionObj;
+    constructor(public viewCtrl: ViewController, public service:TransactionService){
+       this.obj= new TransactionObj();
+        this.obj.date = moment().toISOString();
+    }
 
 
 
 add(){
-this.transaction = new Transaction('salario', 2133, moment().format());
+     this.transaction = new Transaction(this.obj);
 this.service.createTransaction(this.transaction);
+this.close();
 }
 
 close(){

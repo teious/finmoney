@@ -1,9 +1,25 @@
-<ion-content>
-    <p> Nome </p>
-    <ion-input type="text"></ion-input>
-    <p> Valor </p>
-    <ion-input type="number"></ion-input>
+<ion-header>
+    <ion-navbar color="primary">
+        <button ion-button clear color="light" (click)="close()"><ion-icon name="ios-arrow-back"></ion-icon></button>
+        <i ion-text class="label" color="light">adicionar transação</i>
+    </ion-navbar>
 
-    <button ion-button (click)="add()">Adicionar</button>
-    <button ion-button (click)="close()">Fechar</button>
+</ion-header>
+
+<ion-content>
+    <form (ngSubmit)="add()">
+        <ion-item>
+            <ion-label stacked color="primary"> nome </ion-label>
+            <ion-input required type="text" name="name" [(ngModel)]="obj.name"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label stacked color="primary"> valor</ion-label>
+            <ion-input required step="0.01" type="number" name="value" placeholder="R$" [(ngModel)]="obj.value"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label stacked color="primary"> data </ion-label>
+            <ion-datetime required displayFormat="DD/MM/YYYY" name="obj.date" min="2016" max="2018" [(ngModel)]="obj.date"></ion-datetime>
+        </ion-item>
+        <button ion-button type="submit" block>adicionar</button>
+    </form>
 </ion-content>

@@ -4,10 +4,14 @@ import * as moment from 'moment';
 import{AddForm} from './add-form';
 import {TransactionService} from '../../providers/transaction'
 import {Transaction} from '../../models/transaction';
+import 'moment/src/locale/pt-br';
+import 'moment/locale/pt-br';
+
 @Component({
   selector: 'page-page1',
   templateUrl: 'page1.html'
 })
+
 export class Page1 implements OnInit {
   items:Transaction[];
   month:string;
@@ -18,7 +22,7 @@ a:Transaction[];
   this.saldo = 0;
   this.t = moment();
   this.t.locale('pt-br');
-  this.month = this.t.format('MMMM, YY') ;
+  this.month = this.t.format('MMMM, YYYY') ;
 
   }
   ngOnInit(){
@@ -32,7 +36,7 @@ this.items = this.a;
  
       if(this.items[i].checked){
 
-        this.saldo += this.items[i].value;
+        this.saldo +=this.items[i].value;
       }
  
     }
@@ -63,11 +67,11 @@ this.items = this.a;
       if(this.items[i] == item){
         if(item.checked == false){
         this.items[i].checked =true;
-        this.saldo += item.value;
+        this.saldo +=this.items[i].value;
         this.transactionService.updateTransaction(this.items[i]);
     }else{
       this.items[i].checked=false;
-      this.saldo -= item.value;
+      this.saldo -= this.items[i].value;
       this.transactionService.updateTransaction(this.items[i]);
     }
       }

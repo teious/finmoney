@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import PouchDB from 'pouchdb';
+import {Transaction} from '../models/transaction'
 
 /*
   Generated class for the Transactions provider.
@@ -62,10 +63,10 @@ getTransactions(){
   });
  
 }
-createTransaction(transaction){
+createTransaction(transaction:Transaction){
   this.db.post(transaction);
 }
-updateTransaction(transaction){
+updateTransaction(transaction: Transaction){
  this.db.put(transaction).catch((err)  =>{
     console.log(err);
  });
