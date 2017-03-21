@@ -1,15 +1,15 @@
 
 export class Transaction{
-    _id:string;
+    _id:String;
     name:string;
     value: number;
     checked:boolean;
-    date:Date;
+   
 
     constructor(obj:TransactionObj){
         this.name = obj.name;
         this.value = Number(obj.value);
-        this.date = new Date(obj.date);
+        this._id = new Date(obj.date).toISOString();
         this.checked =false
     }
 }

@@ -81,12 +81,12 @@ this.items = this.a;
   prevMonth(){
       this.t.add(-1,'months');
       
-      this.month = this.t.format('MMMM, YY') ;
+      this.month = this.t.format('MMMM, YYYY') ;
       console.log(this.t.format());
   }
  nextMonth(){
    this.t.add(1,'months');
-   this.month = this.t.format('MMMM, YY');
+   this.month = this.t.format('MMMM, YYYY');
    console.log(this.t.format());
 
 }

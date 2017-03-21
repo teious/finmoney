@@ -13,7 +13,7 @@ transaction:Transaction;
 obj:TransactionObj;
     constructor(public viewCtrl: ViewController, public service:TransactionService){
        this.obj= new TransactionObj();
-        this.obj.date = moment().toISOString();
+       this.obj.date = moment().toISOString();
     }
 
 
