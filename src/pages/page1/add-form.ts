@@ -19,7 +19,7 @@ obj:TransactionObj;
 
 
 add(){
-     this.transaction = new Transaction(this.obj);
+this.transaction = new Transaction(this.obj);
 this.service.createTransaction(this.transaction);
 this.close();
 }
