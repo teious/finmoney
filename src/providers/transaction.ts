@@ -16,6 +16,8 @@ export class TransactionService {
   data: any;
   db:any;
   remote:any;
+  databydate: any;
+  
 
   constructor(public http: Http) {
       this.db = new PouchDB('finmoney');
@@ -28,16 +30,41 @@ export class TransactionService {
       };
       this.db.sync(this.remote, options);
 }
+getTransactionsByDate(startKey:String, endKey:String){
+
+  return new Promise(resolve => {
+ 
+    this.db.allDocs({
+      startkey: startKey,
+      endkey: endKey,
+      include_docs: true
+ 
+    }).then((result) => {
+ 
+        this.data = [];
+        result.rows.map((row) => {
+        this.data.push(row.doc);
+      });
+ 
+      resolve(this.data);
+ 
+    }).catch((error) => {
+ 
+      console.log(error);
+ 
+    }); 
+ 
+  });
+}
 getTransactions(){
  if (this.data) {
     return Promise.resolve(this.data);
      
   }
- 
+
   return new Promise(resolve => {
  
     this.db.allDocs({
- 
       include_docs: true
  
     }).then((result) => {
@@ -61,7 +88,6 @@ getTransactions(){
     }); 
  
   });
- 
 }
 createTransaction(transaction:Transaction){
   this.db.post(transaction);

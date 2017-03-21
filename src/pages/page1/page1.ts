@@ -15,23 +15,25 @@ import 'moment/locale/pt-br';
 export class Page1 implements OnInit {
   items:Transaction[];
   month:string;
+  monthStart:String;
+  monthEnd:String;
 t;
 saldo:number;
 a:Transaction[];
   constructor(public navCtrl: NavController, public modalCtrl:ModalController, public transactionService:TransactionService) { 
   this.saldo = 0;
   this.t = moment();
-  this.t.locale('pt-br');
+  this.t.locale('pt-br'); 
   this.month = this.t.format('MMMM, YYYY') ;
 
   }
   ngOnInit(){
-   this.transactionService.getTransactions().then((value)=> {
-    console.log(value);
-     this.a = value;
-     console.log(this.a);
-     
-this.items = this.a;
+ this.monthStart = this.t.startOf('month').toISOString() ;
+  this.monthEnd = this.t.endOf('month').subtract(1,'days').toISOString();
+  console.log(this.monthStart);
+  console.log(this.monthEnd);
+   this.transactionService.getTransactionsByDate(this.monthStart, this.monthEnd).then((value:Transaction[])=> {
+    this.items =value;
        for(let i = 0; i < this.items.length; i++) {
  
       if(this.items[i].checked){
@@ -79,15 +81,40 @@ this.items = this.a;
     }
   }
   prevMonth(){
-      this.t.add(-1,'months');
-      
+      this.t.subtract(1,'months');
       this.month = this.t.format('MMMM, YYYY') ;
-      console.log(this.t.format());
+      this.monthStart = this.t.startOf('month').toISOString() ;
+  this.monthEnd = this.t.endOf('month').subtract(1,'days').toISOString();
+     this.transactionService.getTransactionsByDate(this.monthStart, this.monthEnd).then((pvalue: Transaction[])=> {
+         this.items = pvalue;
+         this.saldo = 0;
+       for(let i = 0; i < this.items.length; i++) {
+ 
+      if(this.items[i].checked){
+
+        this.saldo +=this.items[i].value;
+      }
+ 
+    }
+   });
   }
  nextMonth(){
    this.t.add(1,'months');
    this.month = this.t.format('MMMM, YYYY');
-   console.log(this.t.format());
+    this.monthStart = this.t.startOf('month').toISOString() ;
+  this.monthEnd = this.t.endOf('month').subtract(1,'days').toISOString();
+     this.transactionService.getTransactionsByDate(this.monthStart, this.monthEnd).then((pvalue: Transaction[])=> {
+         this.items = pvalue;
+         this.saldo = 0;
+       for(let i = 0; i < this.items.length; i++) {
+ 
+      if(this.items[i].checked){
+
+        this.saldo +=this.items[i].value;
+      }
+ 
+    }
+   });
 
 }
 addItem(){
