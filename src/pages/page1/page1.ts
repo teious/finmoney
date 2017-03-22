@@ -13,24 +13,34 @@ import 'moment/locale/pt-br';
 })
 
 export class Page1 implements OnInit {
+  tipoSaldo:String;
   
   items:Transaction[];
   month:string;
   monthStart:String;
   monthEnd:String;
   t:any;
-  saldo:number;
-  a:Transaction[];
+  saldoTotal:number;
+  saldoMensal:number;
+  allItems:Transaction[];
   
   constructor(public navCtrl: NavController, public modalCtrl:ModalController, public transactionService:TransactionService) { 
-  
-    this.saldo = 0;
+    this.tipoSaldo= "mensal"
+    this.saldoTotal = 0;
+    this.saldoMensal = 0;
     this.t = moment();
     this.t.locale('pt-br'); 
     this.month = this.t.format('MMMM, YYYY') ;
 
   }
   ngOnInit(){
+   this.transactionService.getTransactions()
+   .then((value:Transaction[]) =>{
+    this.allItems = value;
+      for(let transaction of this.allItems){
+        if(transaction.checked)this.saldoTotal+=transaction.value;
+      }
+   });
 
    this.monthStart = this.t.startOf('month').toISOString() ;
    this.monthEnd = this.t.endOf('month').subtract(1,'days').toISOString();
@@ -39,47 +49,41 @@ export class Page1 implements OnInit {
    .getTransactionsByDate(this.monthStart, this.monthEnd)
    .then((value:Transaction[])=> {
     this.items =value;
-       for(let i = 0; i < this.items.length; i++) {
- 
-        if(this.items[i].checked){
-
-        this.saldo +=this.items[i].value;
-        }
-       }
+       for(let item of this.items) {
+         if(item.checked)this.saldoMensal += item.value;
+         }
    });  
   }
 
 
   removeItem(item){
 
-    for(let i = 0; i < this.items.length; i++) {
-      if(this.items[i] == item){
-        if(item.checked)this.saldo -= item.value;       
-        this.transactionService.deleteTransaction(this.items[i]);
-        this.items.splice(i);    
-      }
-    }
+ 
+        if(item.checked){
+          this.saldoMensal -= item.value;       
+          this.saldoTotal -= item.value;
+        }
+        this.transactionService.deleteTransaction(item);
+
+     
+      
+  
 
   }
   checkItem(item){
 
-    let i:number;
-    for(i = 0; i < this.items.length; i++) {
- 
-      if(this.items[i] == item){
-
-           if(item.checked == false){
-            this.items[i].checked=true;
-            this.saldo +=this.items[i].value;        
-           }else{
-            this.items[i].checked=false;
-            this.saldo -= this.items[i].value;
-           }           
-      this.transactionService
-      .updateTransaction(this.items[i]);
-      }
+      if(item.checked){
+            item.checked=false;
+            this.saldoMensal -= item.value;   
+            this.saldoTotal -= item.value;
+      }else{
+            item.checked=true;
+            this.saldoMensal += item.value;
+            this.saldoTotal += item.value;
+      }           
       
-    }
+      this.transactionService
+      .updateTransaction(item);  
   }
 
   prevMonth(){
@@ -94,10 +98,10 @@ export class Page1 implements OnInit {
       .then((value: Transaction[])=> {
 
       this.items = value;
-      this.saldo = 0;
+      this.saldoMensal = 0;
       
-      for(let i = 0; i < this.items.length; i++) {
-        if(this.items[i].checked)this.saldo +=this.items[i].value;
+      for(let item of  this.items) {
+        if(item.checked)this.saldoMensal +=item.value;
       }
 
     });
@@ -113,13 +117,13 @@ export class Page1 implements OnInit {
 
     this.transactionService
     .getTransactionsByDate(this.monthStart, this.monthEnd)
-    .then((pvalue: Transaction[])=> {
+    .then((value: Transaction[])=> {
 
-    this.items = pvalue;
-    this.saldo = 0;
+    this.items = value;
+    this.saldoMensal = 0;
 
-    for(let i = 0; i < this.items.length; i++) {
-      if(this.items[i].checked)this.saldo +=this.items[i].value;
+    for(let item of this.items) {
+      if(item.checked)this.saldoMensal +=item.value;
     }
 
    });
@@ -133,13 +137,13 @@ addItem(){
   modal.onWillDismiss(()=>{
     this.transactionService
     .getTransactionsByDate(this.monthStart, this.monthEnd)
-    .then((pvalue: Transaction[])=> {
+    .then((value: Transaction[])=> {
 
-        this.items = pvalue;
-        this.saldo = 0;
+        this.items = value;
+        this.saldoMensal = 0;
 
-        for(let i = 0; i < this.items.length; i++) {
-          if(this.items[i].checked)this.saldo +=this.items[i].value;
+        for(let item of this.items) {
+          if(item.checked)this.saldoMensal += item.value;
         }
    });
 

@@ -15,8 +15,16 @@
     </ion-toolbar>
 
     <ion-card>
+        <ion-segment [(ngModel)]="tipoSaldo" color="primary">
+            <ion-segment-button value="mensal">
+                saldo mensal
+            </ion-segment-button>
+            <ion-segment-button value="total">
+                saldo total
+            </ion-segment-button>
+        </ion-segment>
         <ion-card-content class="saldo">
-            {{saldo | currency:'BRL':true }}
+            {{ ((tipoSaldo=="mensal")? saldoMensal : saldoTotal) | currency:'BRL':true }}
         </ion-card-content>
     </ion-card>
     <ion-list>
