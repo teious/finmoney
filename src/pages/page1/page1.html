@@ -9,12 +9,12 @@
 </ion-header>
 
 <ion-content>
-    <ion-toolbar (swipeleft)="prevMonth()" (swiperight)="nextMonth()" text-lowercase>
+    <ion-toolbar text-lowercase>
         <button class="prev-month" (click)="prevMonth()"><ion-icon color="primary" name="arrow-back"></ion-icon></button> {{month}}
         <button class="next-month" (click)="nextMonth()"><ion-icon color="primary" name="arrow-forward"></ion-icon></button>
     </ion-toolbar>
 
-    <ion-card (swipeleft)="prevMonth()" (swiperight)="nextMonth()">
+    <ion-card>
         <ion-segment [(ngModel)]="tipoSaldo" color="primary">
             <ion-segment-button value="mensal">
                 saldo mensal
@@ -30,7 +30,7 @@
     <ion-list >
         <ion-item-sliding *ngFor="let item of items">
             <ion-item>
-                <button class="check-button" (click)="checkItem(item)"><ion-icon name="ios-checkbox" [isActive]="item.checked" ></ion-icon></button>
+                <button class="check-button" (click)="checkItem(item)"><ion-icon name="md-checkmark"  color="{{(item.value >= 0)?((item.checked)? 'secondary':'dark'):((item.checked)?'danger':'dark')}}" ></ion-icon></button>
                 <p class="p-bold">{{item.name}}</p>
                 <p>{{item.value | currency:'BRL':true}}</p>
             </ion-item>
