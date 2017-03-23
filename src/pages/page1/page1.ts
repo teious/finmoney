@@ -134,14 +134,13 @@ addItem(){
 
   let modal = this.modalCtrl.create(AddForm);
   modal.present();
-  modal.onWillDismiss(()=>{
+  modal.onDidDismiss(()=>{
     this.transactionService
     .getTransactionsByDate(this.monthStart, this.monthEnd)
     .then((value: Transaction[])=> {
 
         this.items = value;
         this.saldoMensal = 0;
-
         for(let item of this.items) {
           if(item.checked)this.saldoMensal += item.value;
         }

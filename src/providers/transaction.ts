@@ -21,7 +21,7 @@ export class TransactionService {
 
   constructor(public http: Http) {
       this.db = new PouchDB('finmoney');
-      this.remote = 'http://localhost:5984/finmoney';
+      this.remote = 'http://127.0.1.1:5984/finmoney';
 
       let options = {
         live: true,

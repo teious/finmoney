@@ -1,3 +1,12 @@
+$colors: (
+
+  primary:    #387ef5,
+  secondary:  #32db64,
+  danger:     #f53d3d,
+  light:      #f4f4f4,
+  dark:       #222,
+
+);
 ion-toolbar {
     text-align: center;
 }
@@ -20,34 +29,24 @@ ion-icon {
     background-color: #f8f8f8;
 }
 
-.p-bold {
+.p-bold-green {
     font-weight: bold;
+    color: #32db64 ;
+}
+
+.p-bold-red {
+    font-weight: bold;
+    color: #f53d3d;
 }
 
 .saldo {
     text-align: center;
     font-size: 2em;
 }
-
-.add-button {
-    z-index: 20;
-    position: fixed;
-    float: right;
-    display: block;
-    bottom: 2%;
-    left: 75%;
-    right: 0;
-    width: 50px;
-    height: 50px;
-    line-height: 50px;
-    color: #f5f5f5;
-    text-align: center;
-    text-decoration: none;
-    background: danger;
-    box-shadow: 0 0 3px gray;
-    font-size: 10px;
-    font-weight: bold;
+.segment{
+ 
 }
+
 
 .check-button {
     float: right;

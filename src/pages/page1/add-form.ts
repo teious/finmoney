@@ -11,15 +11,21 @@ import * as moment from 'moment';
 export class AddForm{
 transaction:Transaction;
 obj:TransactionObj;
+tipoTransacao:String;
     constructor(public viewCtrl: ViewController, public service:TransactionService){
+       this.tipoTransacao = "receita"
        this.obj= new TransactionObj();
        this.obj.date = moment().toISOString();
     }
 
 
 
-add(){
-this.transaction = new Transaction(this.obj);
+add(obj){
+    if(this.tipoTransacao!="receita"){
+        obj.value = 0 - obj.value;
+    }
+
+this.transaction = new Transaction(obj);
 this.service.createTransaction(this.transaction);
 this.close();
 }

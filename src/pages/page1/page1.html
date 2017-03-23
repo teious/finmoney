@@ -3,7 +3,7 @@
         <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-        <ion-title>FinMoney
+        <ion-title color="primary">FinMoney
         </ion-title>
     </ion-navbar>
 </ion-header>
@@ -14,8 +14,8 @@
         <button class="next-month" (click)="nextMonth()"><ion-icon color="primary" name="arrow-forward"></ion-icon></button>
     </ion-toolbar>
 
-    <ion-card>
-        <ion-segment [(ngModel)]="tipoSaldo" color="primary">
+<ion-card mode="ios">
+     <ion-segment [(ngModel)]="tipoSaldo" color="primary" mode="ios">
             <ion-segment-button value="mensal">
                 saldo mensal
             </ion-segment-button>
@@ -23,15 +23,18 @@
                 saldo total
             </ion-segment-button>
         </ion-segment>
+   </ion-card>
+    <ion-card>
         <ion-card-content class="saldo">
             {{ ((tipoSaldo=="mensal")? saldoMensal : saldoTotal) | currency:'BRL':true }}
         </ion-card-content>
     </ion-card>
+    <ion-card>
     <ion-list >
         <ion-item-sliding *ngFor="let item of items">
             <ion-item>
                 <button class="check-button" (click)="checkItem(item)"><ion-icon name="md-checkmark"  color="{{(item.value >= 0)?((item.checked)? 'secondary':'dark'):((item.checked)?'danger':'dark')}}" ></ion-icon></button>
-                <p class="p-bold">{{item.name}}</p>
+                <p class="{{(item.value >= 0)? 'p-bold-green':'p-bold-red'}}">{{item.name}}</p>
                 <p>{{item.value | currency:'BRL':true}}</p>
             </ion-item>
             <ion-item-options side="right">
@@ -39,8 +42,9 @@
             </ion-item-options>
         </ion-item-sliding>
     </ion-list>
-    <ion-fab bottom center>
-        <button ion-fab color="dark" (click)="addItem($event)">
+    </ion-card>
+    <ion-fab bottom right>
+        <button ion-fab color="primary" (click)="addItem($event)">
            <ion-icon name="add"></ion-icon>
        </button>
     </ion-fab>
