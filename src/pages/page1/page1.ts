@@ -1,8 +1,9 @@
 import { Component, OnInit} from '@angular/core';
 import { NavController, ModalController} from 'ionic-angular';
 import * as moment from 'moment';
-import{AddForm} from './add-form';
-import {TransactionService} from '../../providers/transaction'
+import{ReceitaForm} from './receita-form';
+import{DespesaForm} from './despesa-form';
+import {TransactionService} from '../../providers/transaction';
 import {Transaction} from '../../models/transaction';
 import 'moment/src/locale/pt-br';
 import 'moment/locale/pt-br';
@@ -14,7 +15,6 @@ import 'moment/locale/pt-br';
 
 export class Page1 implements OnInit {
   tipoSaldo:String;
-  
   items:Transaction[];
   month:string;
   monthStart:String;
@@ -130,23 +130,39 @@ export class Page1 implements OnInit {
 
 }
 
-addItem(){
+addDespesa(){
 
-  let modal = this.modalCtrl.create(AddForm);
+  let modal = this.modalCtrl.create(DespesaForm);
   modal.present();
   modal.onDidDismiss(()=>{
     this.transactionService
     .getTransactionsByDate(this.monthStart, this.monthEnd)
     .then((value: Transaction[])=> {
-
         this.items = value;
         this.saldoMensal = 0;
         for(let item of this.items) {
           if(item.checked)this.saldoMensal += item.value;
         }
    });
-
-  });
+    
+    });
 }
 
+addReceita(){
+
+  let modal = this.modalCtrl.create(ReceitaForm);
+  modal.present();
+  modal.onDidDismiss(()=>{
+    this.transactionService
+    .getTransactionsByDate(this.monthStart, this.monthEnd)
+    .then((value: Transaction[])=> {
+        this.items = value;
+        this.saldoMensal = 0;
+        for(let item of this.items) {
+          if(item.checked)this.saldoMensal += item.value;
+        }
+   });
+    
+    });
+}
 }

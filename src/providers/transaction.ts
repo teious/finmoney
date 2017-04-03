@@ -10,6 +10,7 @@ import {Transaction} from '../models/transaction'
   See https://angular.io/docs/ts/latest/guide/dependency-injection.html
   for more info on providers and Angular 2 DI.
 */
+
 @Injectable()
 export class TransactionService {
 
@@ -71,7 +72,7 @@ getTransactions(){
  
         this.data = [];
  
-        let docs = result.rows.map((row) => {
+        result.rows.map((row) => {
         this.data.push(row.doc);
       });
  

@@ -15,7 +15,7 @@
     </ion-toolbar>
 
 <ion-card mode="ios">
-     <ion-segment [(ngModel)]="tipoSaldo" color="primary" mode="ios">
+     <ion-segment [(ngModel)]="tipoSaldo" color="primary">
             <ion-segment-button value="mensal">
                 saldo mensal
             </ion-segment-button>
@@ -44,12 +44,17 @@
     </ion-list>
     </ion-card>
     <ion-fab bottom right>
-        <button ion-fab color="primary" (click)="addItem($event)">
+        <button ion-fab color="primary">
            <ion-icon name="add"></ion-icon>
        </button>
+       <ion-fab-list side ="top">
+           <button ion-fab mini color="secondary" (click)="addReceita($event)">
+            <ion-icon name="logo-usd" color="light" ></ion-icon>
+           </button>
+           <button ion-fab mini color="danger" (click)="addDespesa($event)">
+            <ion-icon name="logo-usd" color= "light"></ion-icon>
+           </button>
+       </ion-fab-list>
     </ion-fab>
-
-
-
 
 </ion-content>

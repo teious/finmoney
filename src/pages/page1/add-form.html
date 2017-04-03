@@ -1,22 +1,12 @@
 <ion-header>
     <ion-navbar color="primary">
         <button ion-button clear color="light" (click)="close()"><ion-icon name="ios-arrow-back"></ion-icon></button>
-        <i ion-text class="label" color="light">adicionar transação</i>
+        <i ion-text class="label" color="light">adicionar {{tipoTransacao}}</i>
     </ion-navbar>
 </ion-header>
 
 <ion-content>
     <form (ngSubmit)="add(obj)">
-        <ion-item>
-         <ion-segment name="type" [(ngModel)]="tipoTransacao" mode="ios" color="primary">
-            <ion-segment-button value="receita" text-lowercase >
-                receita
-            </ion-segment-button>
-            <ion-segment-button value="despesa" text-lowercase >
-                despesa
-            </ion-segment-button>
-        </ion-segment>
-        </ion-item>
         <ion-item>
             <ion-label stacked color="primary"> nome </ion-label>
             <ion-input required type="text" name="name" [(ngModel)]="obj.name"></ion-input>
