@@ -31,6 +31,7 @@ export class DespesaForm {
 
   add(obj) {
     obj.value = 0 - obj.value;
+    obj.checked = (new Date(this.obj.date) >= moment().toDate())? false : true ;
     this.transaction = new Transaction(obj);
     this.service.createTransaction(this.transaction);
     this.close();

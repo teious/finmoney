@@ -30,7 +30,7 @@ export class ReceitaForm {
 
 
   add(obj) {
-
+    obj.checked = (new Date(this.obj.date) >= moment().toDate())? false : true ;
     this.transaction = new Transaction(obj);
     this.service.createTransaction(this.transaction);
     this.close();

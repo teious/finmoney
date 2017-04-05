@@ -10,7 +10,7 @@ export class Transaction{
         this.name = obj.name;
         this.value = Number(obj.value);
         this._id = new Date(obj.date).toISOString();
-        this.checked =false
+        this.checked =obj.checked;
     }
 }
 export class TransactionObj{
@@ -18,5 +18,6 @@ export class TransactionObj{
 name:string;
 value:number;
 date:string;
+checked:boolean
 
 }

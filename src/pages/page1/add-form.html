@@ -13,12 +13,12 @@
         </ion-item>
         <ion-item>
             <ion-label stacked color="primary"> valor</ion-label>
-            <ion-input required step="0.01" type="number" name="value" placeholder="R$" [(ngModel)]="obj.value"></ion-input>
+            <ion-input required min="0" step="0.01" type="number" name="value" placeholder="R$" [(ngModel)]="obj.value"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label stacked color="primary"> data </ion-label>
             <ion-datetime required displayFormat="DD/MM/YYYY" name="obj.date" min="2016" max="2018" [(ngModel)]="obj.date"></ion-datetime>
         </ion-item>
-        <button class="add-button" ion-button type="submit" mode="ios"  color="primary" >adicionar</button>
+        <button class="add-button" ion-button type="submit" mode="ios" color="primary">adicionar</button>
     </form>
 </ion-content>
