@@ -3,7 +3,7 @@
         <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-        <ion-title color="primary">FinMoney
+        <ion-title color="primary">extrato
         </ion-title>
     </ion-navbar>
 </ion-header>
@@ -17,14 +17,13 @@
 <ion-card mode="ios">
      <ion-segment [(ngModel)]="tipoSaldo" color="primary">
             <ion-segment-button value="mensal">
-                saldo mensal
+                mensal
             </ion-segment-button>
             <ion-segment-button value="total">
-                saldo total
+                total
             </ion-segment-button>
         </ion-segment>
-   </ion-card>
-    <ion-card>
+
         <ion-card-content class="saldo">
             {{ ((tipoSaldo=="mensal")? saldoMensal : saldoTotal) | currency:'BRL':true }}
         </ion-card-content>
@@ -42,7 +41,10 @@
             </ion-item-options>
         </ion-item-sliding>
     </ion-list>
+   
     </ion-card>
+     <div class="footer">
+    </div>
     <ion-fab bottom right>
         <button ion-fab color="primary">
            <ion-icon name="add"></ion-icon>
