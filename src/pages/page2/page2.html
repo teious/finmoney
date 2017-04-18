@@ -27,7 +27,7 @@
   <div class="result" *ngIf="submited">
     <ion-list>
       <ion-item>
-        <ion-label class="label label-md" color="primary">rentabilidade</ion-label>
+        <ion-label class="label label-md" color="primary">rentabilidade (%)</ion-label>
         <ion-range [(ngModel)]="vgbl.rentability" snaps="true" step="1" min="1" max="12" (ionChange)="calculateVGBL()" color="danger"
           pin="true">
           <ion-label range-left>1</ion-label>
