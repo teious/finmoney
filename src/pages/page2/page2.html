@@ -43,10 +43,11 @@
           <ion-label range-right>50</ion-label>
         </ion-range>
       </ion-item>
-
-      <ion-label class="label label-md" color="primary">
-        {{vgbl.total | currency:'BRL':true}}
-      </ion-label>
-    </ion-list>
+      </ion-list>
+      <ion-card>
+            <ion-card-content class="saldo">
+            {{ vgbl.total | currency:'BRL':true }}
+        </ion-card-content>
+      </ion-card>
   </div>
 </ion-content>
