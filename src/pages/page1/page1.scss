@@ -1,18 +1,14 @@
-$colors: (
-
-  primary:    #387ef5,
-  secondary:  #32db64,
-  danger:     #f53d3d,
-  light:      #f4f4f4,
-  dark:       #222,
-
-);
+$colors: ( primary: #387ef5, secondary: #32db64, danger: #f53d3d, light: #f4f4f4, dark: #222, );
 ion-toolbar {
     text-align: center;
 }
 
 ion-icon {
     font-size: 2em;
+}
+
+.title {
+    float: left;
 }
 
 .toolbar-content-md {
@@ -31,7 +27,7 @@ ion-icon {
 
 .p-bold-green {
     font-weight: bold;
-    color: #32db64 ;
+    color: #32db64;
 }
 
 .p-bold-red {
@@ -44,12 +40,17 @@ ion-icon {
     font-size: 2em;
 }
 
-
+.cloud-button {
+    float: right;
+    background: #387ef5;
+    margin-right: 10px;
+}
 
 .check-button {
     float: right;
     background: white;
 }
-.footer{
+
+.footer {
     height: 50px;
 }
